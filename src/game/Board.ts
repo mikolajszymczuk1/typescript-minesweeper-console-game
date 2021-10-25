@@ -48,7 +48,7 @@ export default class Board {
         for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
                 let currentField: Field = this.fields[y][x];
-                if (currentField.value !== -1 && currentField.value !== -2) {
+                if (currentField.value !== -1) {
                     let minesAround: number = 0;
                     this.getNeighbors(y, x).forEach((el) => {
                         if (this.fields[el[0]][el[1]].value === -1) {
@@ -74,11 +74,14 @@ export default class Board {
                     row += "[ ]";
                     continue;
                 }
+
+                if (currentField.isFlagged) {
+                    row += "[F]";
+                    continue;
+                }
                 
                 if (currentField.value === -1) {
                     row += "[*]";
-                } else if (currentField.value === -2) {
-                    row += "[F]";
                 } else {
                     row += `[${ currentField.value }]`;
                 }
