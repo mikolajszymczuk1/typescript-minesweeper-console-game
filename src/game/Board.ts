@@ -70,13 +70,13 @@ export default class Board {
             for (let x = 0; x < this.width; x++) {
                 let currentField: Field = this.fields[y][x];
 
-                if (!currentField.isDiscover) {
-                    row += "[ ]";
+                if (currentField.isFlagged) {
+                    row += "[F]";
                     continue;
                 }
 
-                if (currentField.isFlagged) {
-                    row += "[F]";
+                if (!currentField.isDiscover) {
+                    row += "[ ]";
                     continue;
                 }
                 
@@ -89,5 +89,13 @@ export default class Board {
 
             console.log(row);
         }
+    }
+
+    discoverField(row: number, column: number): void {
+        this.fields[row][column].discover();
+    }
+
+    flagField(row: number, column: number): void {
+        this.fields[row][column].flag();
     }
 }
