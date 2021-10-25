@@ -14,6 +14,10 @@ export default class Field {
     }
 
     flag(): void {
-        this.isFlagged = this.isDiscover ? false : true;
+        if (!this.isFlagged) {
+            this.isFlagged = this.isDiscover ? false : true;
+        } else {
+            this.isFlagged = false;
+        }
     }
 }
