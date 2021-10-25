@@ -12,7 +12,7 @@ export default class Board {
         this.fields = [];
     }
 
-    createBoard() {
+    createBoard(): void {
         for (let y = 0; y < this.height; y++) {
             this.fields[y] = [];
             for (let x = 0; x < this.width; x++) {
@@ -21,7 +21,7 @@ export default class Board {
         }
     }
 
-    addMines(minesCount: number) {
+    addMines(minesCount: number): void {
         for (let i = 0; i < minesCount + 1; i++) {
             let randomY: number = randomNumber(0, this.height);
             let randomX: number = randomNumber(0, this.width);
@@ -41,13 +41,14 @@ export default class Board {
             [y + 1, x + 1]      // bottom right
         ];
 
-        return neighbors.filter(el => el[0] > 0 && el[0] < this.height && el[1] > 0 && el[1] < this.width);
+        return neighbors.filter(el => el[0] >= 0 && el[0] < this.height && el[1] >= 0 && el[1] < this.width);
     }
 
-    configureFields() {
+    configureFields(): void {
         for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
-                if (this.fields[y][x].value !== -1 && this.fields[y][x].value !== -2) {
+                let currentField: Field = this.fields[y][x];
+                if (currentField.value !== -1 && currentField.value !== -2) {
                     let minesAround: number = 0;
                     this.getNeighbors(y, x).forEach((el) => {
                         if (this.fields[el[0]][el[1]].value === -1) {
@@ -55,25 +56,31 @@ export default class Board {
                         }
                     });
 
-                    this.fields[y][x].value = minesAround;
+                    currentField.value = minesAround;
                 }
             }
         }
     }
 
-    render() {
+    render(): void {
         console.clear();  // Clear console before each render
 
         for (let y = 0; y < this.height; y++) {
             let row: string = "";
             for (let x = 0; x < this.width; x++) {
-                let currentFieldValue: number = this.fields[y][x].value;
-                if (currentFieldValue === -1) {
+                let currentField: Field = this.fields[y][x];
+
+                if (!currentField.isDiscover) {
+                    row += "[ ]";
+                    continue;
+                }
+                
+                if (currentField.value === -1) {
                     row += "[*]";
-                } else if (currentFieldValue === -2) {
+                } else if (currentField.value === -2) {
                     row += "[F]";
                 } else {
-                    row += `[${ this.fields[y][x].value }]`;
+                    row += `[${ currentField.value }]`;
                 }
             }
 
