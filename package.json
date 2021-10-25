@@ -1,0 +1,33 @@
+{
+    "name": "typescript-minesweeper-console-game",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/app.ts",
+    "scripts": {
+        "dev": "gulp dev",
+        "build": "gulp build",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mikolajszymczuk1/typescript-minesweeper-console-game.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mikolajszymczuk1/typescript-minesweeper-console-game/issues"
+    },
+    "homepage": "https://github.com/mikolajszymczuk1/typescript-minesweeper-console-game#readme",
+    "dependencies": {
+        "typescript": "^4.4.4"
+    },
+    "devDependencies": {
+        "@types/jest": "^27.0.2",
+        "gulp": "^4.0.2",
+        "gulp-minify": "^3.1.0",
+        "gulp-typescript": "^6.0.0-alpha.1",
+        "jest": "^27.3.1",
+        "ts-jest": "^27.0.7"
+    }
+}
