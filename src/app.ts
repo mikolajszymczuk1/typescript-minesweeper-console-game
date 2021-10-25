@@ -43,6 +43,7 @@ function createGame(): Game {
 function main(): void {
     intro();
     const game: Game = createGame();
+    game.loop();
 }
 
 main();
