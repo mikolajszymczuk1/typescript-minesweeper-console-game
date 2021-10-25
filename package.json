@@ -4,7 +4,7 @@
     "description": "",
     "main": "src/app.ts",
     "scripts": {
-        "dev": "gulp dev",
+        "dev": "gulp",
         "build": "gulp build",
         "test": "jest"
     },

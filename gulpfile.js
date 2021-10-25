@@ -3,22 +3,25 @@ const ts = require("gulp-typescript");
 const tsProject = ts.createProject("tsconfig.json");
 const minify = require("gulp-minify");
 
+
+const SCRIPTS_PATH = "src/**/*.ts";
+
 // DEV
 function dev() {
-    return src("src/ts/**/*.ts")
+    return src(SCRIPTS_PATH)
         .pipe(tsProject())
-        .pipe(dest("build"));
+        .pipe(dest("dist"));
 }
 
 // Production
 function build() {
-    return src("src/ts/*.ts")
+    return src(SCRIPTS_PATH)
         .pipe(tsProject())
         .pipe(minify({
             noSource: true
         }))
-        .pipe(dest("build"));
+        .pipe(dest("dist"));
 }
 
-exports.default = function() { watch("src/ts/**/*.ts", dev); }
+exports.default = function() { watch(SCRIPTS_PATH, dev); }
 exports.build = build;
