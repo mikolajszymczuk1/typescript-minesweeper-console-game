@@ -115,6 +115,7 @@ export default class Board {
 
     isLose(row: number, column: number): boolean {
         if (this.fields[row][column].value === -1 && !this.fields[row][column].isFlagged) {
+            this.fields[row][column].discover();
             return true;
         }
 

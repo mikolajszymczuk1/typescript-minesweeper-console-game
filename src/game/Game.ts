@@ -65,6 +65,7 @@ export default class Game {
         
             // Check if win or lose
             if (this.board.isLose(row, col)) {
+                this.board.render();
                 console.log("Porażka !!!");
                 this.gameLoop = false;
             }
