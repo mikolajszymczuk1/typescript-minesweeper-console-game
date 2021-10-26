@@ -74,7 +74,7 @@ export default class Board {
                     row += "[F]";
                     continue;
                 }
-
+                
                 if (!currentField.isDiscover) {
                     row += "[ ]";
                     continue;
@@ -97,5 +97,27 @@ export default class Board {
 
     flagField(row: number, column: number): void {
         this.fields[row][column].flag();
+    }
+
+    isWin(): boolean {
+        for (let y = 0; y < this.height; y++) {
+            for(let x = 0; x < this.width; x++) {
+                let currentField: Field = this.fields[y][x];
+                if ((!currentField.isDiscover && currentField.value !== -1) ||
+                    (currentField.value === -1 && !currentField.isFlagged)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    isLose(row: number, column: number): boolean {
+        if (this.fields[row][column].value === -1 && !this.fields[row][column].isFlagged) {
+            return true;
+        }
+
+        return false;
     }
 }

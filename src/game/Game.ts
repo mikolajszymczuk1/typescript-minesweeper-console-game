@@ -62,6 +62,17 @@ export default class Game {
             } else {
                 this.board.flagField(row, col);
             }
+        
+            // Check if win or lose
+            if (this.board.isLose(row, col)) {
+                console.log("Porażka !!!");
+                this.gameLoop = false;
+            }
+    
+            if (this.board.isWin()) {
+                console.log("Zwycięstwo !!!");
+                this.gameLoop = false;
+            }
         }
     }
 }
