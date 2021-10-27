@@ -23,10 +23,10 @@ export default class Game {
 
     renderMenu(): void {
         console.log(`
-    Co chcesz zrobić:
-    1) Postawić / zabrać flage
-    2) Odkryć pole
-    3) Zakończ gre
+    What you want to do:
+    1) Put up / take the flag
+    2) Discover field
+    3) Exit game
         `);
     }
 
@@ -34,7 +34,7 @@ export default class Game {
         while (this.gameLoop) {
             this.board.render();
             this.renderMenu();
-            let choice = prompt("Twój wybór: ");
+            let choice = prompt("Your choice: ");
 
             switch(choice) {
                 case "1":
@@ -53,8 +53,8 @@ export default class Game {
     }
 
     discoverFlagAction(flagMode: boolean = false): void {
-        let row = parseInt(prompt("Podaj numer wiersza: ")) - 1;
-        let col = parseInt(prompt("Podaj numer kolumny: ")) - 1;
+        let row = parseInt(prompt("Enter the row number: ")) - 1;
+        let col = parseInt(prompt("Enter the column number: ")) - 1;
 
         if (row >= 0 && row <= this.height && col >= 0 && col <= this.width) {
             if (!flagMode) {
@@ -66,12 +66,12 @@ export default class Game {
             // Check if win or lose
             if (this.board.isLose(row, col)) {
                 this.board.render();
-                console.log("Porażka !!!");
+                console.log("Game Over !!!");
                 this.gameLoop = false;
             }
     
             if (this.board.isWin()) {
-                console.log("Zwycięstwo !!!");
+                console.log("Victory !!!");
                 this.gameLoop = false;
             }
         }
