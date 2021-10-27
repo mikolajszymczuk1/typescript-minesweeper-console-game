@@ -74,15 +74,24 @@ export default class Board {
         for (let i = 0; i < this.width; i++) {
             if (i == 0) {
                 rowNumber += `   ${ i + 1 }`;
-            } else {
+            } else if (i + 1 < 10) {
                 rowNumber += `  ${ i  + 1 }`;
+            } else {
+                rowNumber += ` ${ i  + 1 }`;
             }
 
         }
         console.log(rowNumber);
 
         for (let y = 0; y < this.height; y++) {
-            let row: string = `${ y + 1 } `;
+            let row: string;
+
+            if (y + 1 < 10) {
+                row = `${ y + 1 } `;
+            } else {
+                row = `${ y + 1 }`;
+            }
+
             for (let x = 0; x < this.width; x++) {
                 let currentField: Field = this.fields[y][x];
 
