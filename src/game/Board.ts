@@ -22,10 +22,15 @@ export default class Board {
     }
 
     addMines(minesCount: number): void {
-        for (let i = 0; i < minesCount + 1; i++) {
+        let count: number = 0;
+        while (count !== minesCount) {
             let randomY: number = randomNumber(0, this.height);
             let randomX: number = randomNumber(0, this.width);
-            this.fields[randomY][randomX].value = -1;
+            
+            if (this.fields[randomY][randomX].value !== -1) {
+                this.fields[randomY][randomX].value = -1;
+                count++;   
+            }
         }
     }
 
