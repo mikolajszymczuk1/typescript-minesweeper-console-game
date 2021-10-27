@@ -65,8 +65,19 @@ export default class Board {
     render(): void {
         console.clear();  // Clear console before each render
 
+        let rowNumber: string = "";
+        for (let i = 0; i < this.width; i++) {
+            if (i == 0) {
+                rowNumber += `   ${ i + 1 }`;
+            } else {
+                rowNumber += `  ${ i  + 1 }`;
+            }
+
+        }
+        console.log(rowNumber);
+
         for (let y = 0; y < this.height; y++) {
-            let row: string = "";
+            let row: string = `${ y + 1 } `;
             for (let x = 0; x < this.width; x++) {
                 let currentField: Field = this.fields[y][x];
 
