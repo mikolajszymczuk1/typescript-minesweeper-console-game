@@ -90,9 +90,11 @@ export default class Board {
                     row += "[ ]";
                     continue;
                 }
-                
+
                 if (currentField.value === -1) {
                     row += "[*]";
+                } else if (currentField.value === 0) {
+                    row += "[+]";
                 } else {
                     row += `[${ currentField.value }]`;
                 }
@@ -104,6 +106,12 @@ export default class Board {
 
     discoverField(row: number, column: number): void {
         this.fields[row][column].discover();
+
+        if (this.fields[row][column].value === 0 && this.fields[row][column].isDiscover) {
+            this.getNeighbors(row, column).forEach((el) => {
+                this.fields[el[0]][el[1]].discover();
+            });
+        }
     }
 
     flagField(row: number, column: number): void {
