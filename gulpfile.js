@@ -18,6 +18,10 @@ function build() {
     return src(SCRIPTS_PATH)
         .pipe(tsProject())
         .pipe(minify({
+            ext: {
+                src: "",
+                min: ".js"
+            },
             noSource: true
         }))
         .pipe(dest("dist"));
