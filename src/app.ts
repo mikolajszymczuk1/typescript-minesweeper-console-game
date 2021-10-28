@@ -16,7 +16,7 @@ function intro(): void {
 }
 
 function createGame(): Game {
-    let difficult = prompt("Podaj poziom trudności (1: łatwy, 2: średni, 3: trudny): ");
+    let difficult = prompt("Select the difficulty level: (1: easy, 2: medium, 3: hard): ");
     let cd;  // Current Difficult
 
     switch(difficult) {
